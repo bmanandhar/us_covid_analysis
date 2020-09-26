@@ -36,8 +36,14 @@ if z == 'y':
             else:
                 state_wise_cases[line[2]] = int(line[4])
     print("State wise total: {}\n=*=*=*=*=*\nCountry total: {}".format(state_wise_cases, country_total))
-else: print("End of process, thank you!Alameda
-")
+else:
+     print("End of process, thank you!")
 
+states = np.array(list(state_wise_cases.keys()))
+state_cases = np.array(list(state_wise_cases.values()))
 
+average = int(np.mean(state_cases))
+print("state_average: ", average)
 
+dt = pd.read_csv(us_counties_covid19_daily.csv)
+dt
