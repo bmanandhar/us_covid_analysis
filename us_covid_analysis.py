@@ -18,7 +18,7 @@ print("All set!")
 
 # data = pd.read_csv(r"/Users/bijayamanandhar/Desktop/us_covid_analysis/us_counties_covid19_daily.csv")
 
-with open('/Users/bijayamanandhar/Desktop/us_covid_analysis/us_counties_covid19_daily.csv', 'r') as csv_file:
+with open('us_counties_covid19_daily.csv', 'r') as csv_file:
     n = 15000
     data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
 
@@ -94,7 +94,7 @@ plt.show()
 # In[397]:
 
 
-with open('/Users/bijayamanandhar/Desktop/us_covid_analysis/us_covid19_daily.csv', 'r') as csv_file1:
+with open('us_covid19_daily.csv', 'r') as csv_file1:
     data1 = pd.read_csv(csv_file1)
     
 
@@ -102,7 +102,7 @@ with open('/Users/bijayamanandhar/Desktop/us_covid_analysis/us_covid19_daily.csv
 # In[399]:
 
 
-with open('/Users/bijayamanandhar/Desktop/us_covid_analysis/us_states_covid19_daily.csv', 'r') as csv_file1:
+with open('us_states_covid19_daily.csv', 'r') as csv_file1:
     data2 = pd.read_csv(csv_file1)
 
 
