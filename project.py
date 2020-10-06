@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 x = input("County: ")
 county_sum = 0
-with open("/Users/bijayamanandhar/Desktop/us_covid_analysis/us_counties_covid19_daily.csv","r") as data:    
+with open("us_counties_covid19_daily.csv","r") as data:    
     csv_reader = csv.reader(data)
     next(csv_reader)
     for line in csv_reader:
