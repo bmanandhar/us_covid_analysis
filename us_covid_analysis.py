@@ -64,7 +64,7 @@ cases = sum(state_cases.values())
 deaths = sum(state_deaths.values())
 case_list = list(state_cases.values())
 country_data['cases'] = sum(state_cases.values())
-country_data['death'] = sum(state_deaths.values())
+country_data['deaths'] = sum(state_deaths.values())
 country_data['mean'] = round(np.mean(case_list))
 country_data['median'] = np.median(case_list)
 
