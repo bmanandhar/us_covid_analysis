@@ -19,7 +19,7 @@ print("All set!")
 # data = pd.read_csv(r"/Users/bijayamanandhar/Desktop/us_covid_analysis/us_counties_covid19_daily.csv")
 
 #data for test
-with open('us_covid_analysis/us_counties_covid19_daily.csv', 'r') as csv_file:
+with open('us_counties_covid19_daily.csv', 'r') as csv_file:
     n = 1500
     data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
 print(type(data))
