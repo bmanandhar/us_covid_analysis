@@ -13,7 +13,7 @@ from scipy import stats as sts
 print("All set!")
 
 
-# In[92]:
+# In[300]:
 
 
 # data = pd.read_csv(r"/Users/bijayamanandhar/Desktop/us_covid_analysis/us_counties_covid19_daily.csv")
@@ -23,7 +23,7 @@ with open('us_counties_covid19_daily.csv', 'r') as csv_file:
     n = 1500
     data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
 print(type(data))
-print('done')
+print(data.info())
 
 
 # In[93]:
@@ -39,7 +39,7 @@ n = df.to_numpy()
 nd = n.tolist()
 
 
-# In[94]:
+# In[205]:
 
 
 state_cases = dict()
@@ -64,7 +64,7 @@ cases = sum(state_cases.values())
 deaths = sum(state_deaths.values())
 case_list = list(state_cases.values())
 country_data['cases'] = sum(state_cases.values())
-country_data['deaths'] = sum(state_deaths.values())
+country_data['death'] = sum(state_deaths.values())
 country_data['mean'] = round(np.mean(case_list))
 country_data['median'] = np.median(case_list)
 
@@ -89,10 +89,12 @@ else:
 pd.DataFrame(list(state_data.items()))
 
 
-# In[42]:
+# In[220]:
 
 
 #bar graph
+# fig, axs = plt.subplots(figsize=(12, 4))
+
 plt.figure(figsize=(20, 10))
 x = list(state_cases.keys())
 y = list(state_cases.values())
@@ -101,21 +103,58 @@ plt.xticks(x, x, rotation=65)
 plt.show()
 
 
-# In[24]:
+# In[161]:
 
 
-# fileconnection = open(csv_file, 'r')
-# lines = fileconnection.readlines()
-# header = lines[0]
-# field_names = header.strip().split(',')
-# print(field_names)
-# for row in lines[1:]:
-#     vals = row.strip().split(',')
-#     if vals[5] != "NA":
-#         print("{}: {}; {}".format(
-#                 vals[0],
-#                 vals[4],
-#                 vals[5]))
+pd.DataFrame(list(country_data.items())).info()
+
+
+# In[164]:
+
+
+pd.DataFrame(list(country_data.items())).dtypes
+
+
+# In[165]:
+
+
+type(pd.DataFrame(list(country_data.items())))
+
+
+# In[166]:
+
+
+df.dtypes
+
+
+# In[167]:
+
+
+df['date'].shape
+
+
+# In[168]:
+
+
+df['state'].shape
+
+
+# In[169]:
+
+
+df.shape
+
+
+# In[221]:
+
+
+df["date"] = pd.to_datetime(df["date"])
+
+
+# In[237]:
+
+
+# fig, axs = plt.subplots(figsize=(12, 4))
 
 
 # In[ ]:
