@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[91]:
+# In[25]:
 
 
 import csv
@@ -13,33 +13,25 @@ from scipy import stats as sts
 print("All set!")
 
 
-# In[300]:
-
-
-# data = pd.read_csv(r"/Users/bijayamanandhar/Desktop/us_covid_analysis/us_counties_covid19_daily.csv")
-
-#data for test
-with open('us_counties_covid19_daily.csv', 'r') as csv_file:
-    n = 1500
-    data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
-print(type(data))
-print(data.info())
-
-
-# In[93]:
-
-
-df = pd.DataFrame(data)
-
-
 # In[44]:
 
 
-n = df.to_numpy()
+#data for test
+with open('us_counties_covid19_daily.csv', 'r') as csv_file:
+    n = 15000
+    data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
+print(data.info())
+
+
+# In[45]:
+
+
+#convert data to numpy array, then to python list
+n = data.to_numpy()
 nd = n.tolist()
 
 
-# In[205]:
+# In[56]:
 
 
 state_cases = dict()
@@ -71,9 +63,7 @@ country_data['median'] = np.median(case_list)
 pd.DataFrame(list(country_data.items()))
 
 
-
-
-# In[95]:
+# In[47]:
 
 
 state_data = dict()
@@ -89,11 +79,10 @@ else:
 pd.DataFrame(list(state_data.items()))
 
 
-# In[220]:
+# In[57]:
 
 
 #bar graph
-# fig, axs = plt.subplots(figsize=(12, 4))
 
 plt.figure(figsize=(20, 10))
 x = list(state_cases.keys())
@@ -103,7 +92,7 @@ plt.xticks(x, x, rotation=65)
 plt.show()
 
 
-# In[161]:
+# In[49]:
 
 
 pd.DataFrame(list(country_data.items())).info()
@@ -115,13 +104,13 @@ pd.DataFrame(list(country_data.items())).info()
 pd.DataFrame(list(country_data.items())).dtypes
 
 
-# In[165]:
+# In[50]:
 
 
 type(pd.DataFrame(list(country_data.items())))
 
 
-# In[166]:
+# In[51]:
 
 
 df.dtypes
