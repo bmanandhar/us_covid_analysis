@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[100]:
 
 
 #covid_analysis
@@ -16,7 +16,7 @@ from statistics import stdev
 print("All set!")
 
 
-# In[55]:
+# In[101]:
 
 
 #data for test
@@ -67,11 +67,12 @@ country_data['median'] = np.median(case_list)
 pd.DataFrame(list(country_data.items()))
 
 
-# In[53]:
+# In[142]:
 
 
-x = input('Enetr state name: ')
-data.loc[data['state'] == x, ['cases', 'deaths']].sum()
+#State summary
+x = input('Enter state name: ')
+data.loc[data.state == x, ['cases', 'deaths']].sum()
 
 
 # In[6]:
@@ -147,7 +148,7 @@ data.mean(axis=0)
 data.columns
 
 
-# In[27]:
+# In[125]:
 
 
 get_ipython().run_cell_magic('HTML', '', '<style type="text/css">\ntable.dataframe td, table.dataframe th {\n    border: 1px  black solid !important;\n  color: black !important;\n}\n</style>')
@@ -184,7 +185,7 @@ data.groupby('state').mean().plot(kind='bar')
 #<matplotlib.axes._subplots.AxesSubplot at 0x7fd200da02b0>
 
 
-# In[38]:
+# In[57]:
 
 
 pd.crosstab(data.state, data.date)
@@ -256,16 +257,49 @@ data[data.state == 'California'].mean()
 #gives totals of numerical columns for a specified state
 
 
-# In[63]:
+# In[87]:
 
 
-data.cases.sum() #total for a specified column
+data[['cases', 'deaths']].sum() #total for each specified columns
+#It's a pandas.core.series.Series
 
 
 # In[4]:
 
 
-data.head()
+data.
+
+
+# In[94]:
+
+
+data['cases'].sum() #total for a specified column
+#It's numpy.int64
+
+
+# In[144]:
+
+
+data = pd.read_csv('/Users/bijayamanandhar/Desktop/data/us_counties_covid19_daily.csv').head(2000)
+states = list(set(data.state)) #list of states
+
+
+# In[168]:
+
+
+#State summary
+state_dict = {}
+for each_state in states:
+    each_state_data = data.loc[data.state == each_state, ['cases', 'deaths']].sum()
+    state_dict[each_state] = each_state_data
+result = pd.DataFrame(state_dict).T
+result
+
+
+# In[173]:
+
+
+result.index
 
 
 # In[ ]:
