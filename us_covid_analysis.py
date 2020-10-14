@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[49]:
+# In[1]:
 
 
 #covid_analysis
@@ -16,12 +16,12 @@ from statistics import stdev
 print("All set!")
 
 
-# In[2]:
+# In[3]:
 
 
 #data for test
 #Index(['date', 'county', 'state', 'fips', 'cases', 'deaths'], dtype='object')
-open('/Users/bijayamanandhar/Desktop/data/us_counties_covid19_daily.csv', 'r') as csv_file:
+with open('/Users/bijayamanandhar/Desktop/data/us_counties_covid19_daily.csv', 'r') as csv_file:
     n = 15000
     data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
 print(data.info())
@@ -67,20 +67,11 @@ country_data['median'] = np.median(case_list)
 pd.DataFrame(list(country_data.items()))
 
 
-# In[5]:
+# In[53]:
 
 
-state_data = dict()
-x = input('State: ')
-if x in state_cases:
-    state_data['Cases'] = int(state_cases[x])
-    state_data['Deaths'] = int(state_deaths[x])
-    state_data['Percent'] = round((state_cases[x]/cases)*100, 2)
-    state_data['Case to Death Percent'] = round((state_deaths[x]/state_cases[x])/100, 4)
-
-else:
-    print('Either state name is wrong or it has no cases yet!')
-pd.DataFrame(list(state_data.items()))
+x = input('Enetr state name: ')
+data.loc[data['state'] == x, ['cases', 'deaths']].sum()
 
 
 # In[6]:
@@ -269,6 +260,12 @@ data[data.state == 'California'].mean()
 
 
 data.cases.sum() #total for a specified column
+
+
+# In[4]:
+
+
+data.head()
 
 
 # In[ ]:
