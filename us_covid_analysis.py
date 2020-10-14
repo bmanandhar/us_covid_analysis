@@ -16,7 +16,7 @@ from statistics import stdev
 print("All set!")
 
 
-# In[3]:
+# In[55]:
 
 
 #data for test
@@ -24,7 +24,7 @@ print("All set!")
 with open('/Users/bijayamanandhar/Desktop/data/us_counties_covid19_daily.csv', 'r') as csv_file:
     n = 15000
     data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
-print(data.info())
+data.describe()
 
 
 # In[3]:
