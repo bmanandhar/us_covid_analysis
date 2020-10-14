@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[25]:
+# In[49]:
 
+
+#covid_analysis
 
 import csv
 import pandas as pd
@@ -10,20 +12,22 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy import stats as sts 
+from statistics import stdev
 print("All set!")
 
 
-# In[44]:
+# In[2]:
 
 
 #data for test
-with open('us_counties_covid19_daily.csv', 'r') as csv_file:
+#Index(['date', 'county', 'state', 'fips', 'cases', 'deaths'], dtype='object')
+open('/Users/bijayamanandhar/Desktop/data/us_counties_covid19_daily.csv', 'r') as csv_file:
     n = 15000
     data = pd.read_csv(csv_file, skiprows = lambda i: i % n != 0)
 print(data.info())
 
 
-# In[45]:
+# In[3]:
 
 
 #convert data to numpy array, then to python list
@@ -31,7 +35,7 @@ n = data.to_numpy()
 nd = n.tolist()
 
 
-# In[56]:
+# In[4]:
 
 
 state_cases = dict()
@@ -63,7 +67,7 @@ country_data['median'] = np.median(case_list)
 pd.DataFrame(list(country_data.items()))
 
 
-# In[47]:
+# In[5]:
 
 
 state_data = dict()
@@ -79,7 +83,7 @@ else:
 pd.DataFrame(list(state_data.items()))
 
 
-# In[57]:
+# In[6]:
 
 
 #bar graph
@@ -92,58 +96,179 @@ plt.xticks(x, x, rotation=65)
 plt.show()
 
 
-# In[49]:
+# In[7]:
 
 
 pd.DataFrame(list(country_data.items())).info()
 
 
-# In[164]:
+# In[8]:
 
 
 pd.DataFrame(list(country_data.items())).dtypes
 
 
-# In[50]:
+# In[9]:
 
 
 type(pd.DataFrame(list(country_data.items())))
 
 
+# In[12]:
+
+
+data.dtypes
+
+
+# In[13]:
+
+
+data['date'].shape
+
+
+# In[15]:
+
+
+data['state'].shape
+
+
+# In[16]:
+
+
+data.shape
+
+
+# In[18]:
+
+
+data["date"] = pd.to_datetime(data["date"])
+
+
+# In[28]:
+
+
+data.mean(axis=0)
+
+
+# In[21]:
+
+
+data.columns
+
+
+# In[27]:
+
+
+get_ipython().run_cell_magic('HTML', '', '<style type="text/css">\ntable.dataframe td, table.dataframe th {\n    border: 1px  black solid !important;\n  color: black !important;\n}\n</style>')
+
+
+# In[30]:
+
+
+data.state.describe()
+
+
+# In[31]:
+
+
+data.cases.mean()
+
+
+# In[32]:
+
+
+data.deaths.mean()
+
+
+# In[33]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[35]:
+
+
+data.groupby('state').mean().plot(kind='bar')
+#<matplotlib.axes._subplots.AxesSubplot at 0x7fd200da02b0>
+
+
+# In[38]:
+
+
+pd.crosstab(data.state, data.date)
+
+
+# In[39]:
+
+
+data.drop(3, axis=0).head() 
+#drops the data row at index 3, axis-0 means across rows (top-down)
+
+
+# In[43]:
+
+
+data.isnull().sum() 
+#shows total number of missing data, True=1, False=0 
+
+
+# In[45]:
+
+
+data.drop('fips', axis=1).head(5)
+#drops column 'fips', axis=1, means across column (left-right)
+
+
 # In[51]:
 
 
-df.dtypes
+#Standard Deviatiion
+standard_deviation = stdev(list(data.cases))
+standard_deviation
 
 
-# In[167]:
+# In[54]:
 
 
-df['date'].shape
+max(data.cases) #max number in cases clomun
 
 
-# In[168]:
+# In[55]:
 
 
-df['state'].shape
+min(data.cases)#min number in cases column
 
 
-# In[169]:
+# In[56]:
 
 
-df.shape
+max(data.deaths)
 
 
-# In[221]:
+# In[57]:
 
 
-df["date"] = pd.to_datetime(df["date"])
+min(data.deaths)
 
 
-# In[237]:
+# In[58]:
 
 
-# fig, axs = plt.subplots(figsize=(12, 4))
+np.std(data.cases)
+
+
+# In[61]:
+
+
+data[data.state == 'California'].mean() 
+#gives totals of numerical columns for a specified state
+
+
+# In[63]:
+
+
+data.cases.sum() #total for a specified column
 
 
 # In[ ]:
